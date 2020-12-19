@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TahminEt</title>
+	<link rel="stylesheet" type="text/css" href="TahminEt2.css">
+</head>
+<body>
+<div class=" bgcolor width height">
+	<div class="basla">
+	<label>
+		<p id="peki">Hadi Başlıyalım</p>
+	</label>
+</div>
+<label>
+		<p id="sure">Süre Başlıyor</p>
+	</label>
+	<label>
+		<p id="can">Can</p>
+	</label>
+<div class="center">
+	<label class="tuttum">
+		<p id="tuttum"></p>
+	</label>
+</div>
+	<div class="center">
+	<label>
+		<p id="level"></p>
+	</label>
+	<label >
+		<p id="skor"></p>
+	</label>
+	</div>
+<div class="center" id="panel" >
+	<input type="text" id="deger"></input>
+	<button onclick="deger()">BU</button>
+</div>
+<div class="center dpnone" id="göster" >
+	<button><a href="TahminEt2.html">TEKRAR DENE..</a></button>
+</div>
+</div>
+<script type="text/javascript">
+	var level=1;
+	var skor=0;
+	var tuttum;
+	var salladım;
+	var sure=30;
+	var can=3;
+	var kazandın=0;
+	window.setTimeout(Sure, 1000);
+	function skor(s){
+	skor=s;
+	document.getElementById("skor").innerHTML='skor '+skor;
+	}
+	tuttum=6;
+	document.getElementById("tuttum").innerHTML='12 bölü 2 kaçtır';
+	function Sure(){
+		if(can>0){
+	sure--;
+	document.getElementById("sure").innerHTML="Süre " + sure;
+	document.getElementById("can").innerHTML="Can " + can;
+	}
+	 if(sure>0){
+	window.setTimeout(Sure, 1000);		
+	}
+	else if(sure===0){
+	window.setTimeout(SureDoldu, 1000);
+	}
+	}
+function SureBasla(){
+	if(can>0){
+	sure=30;
+	document.getElementById("sure").innerHTML="Süre " + sure;
+	document.getElementById("can").innerHTML="Can " + can;
+}
+	if(sure>0){
+	sure--;		
+	}
+	if(sure===0){
+	window.setTimeout(SureDoldu, 1000);
+	}
+	}
+	function Kazandın(){
+	document.getElementById("panel").style.display="none";
+	document.getElementById("göster").style.display="inherit";
+	document.getElementById("göster").style.textAlign="center";
+	document.getElementById("tuttum").innerHTML='YUPPİ KAZANDIN..:)';
+	document.getElementById("level").innerHTML='';
+	document.getElementById("skor").innerHTML='';
+	document.getElementById("peki").innerHTML="OYUN BİTTİ";		
+	document.getElementById("can").innerHTML=Can;
+	sure=0;
+	document.getElementById("sure").innerHTML="Süre " + sure;
+	document.getElementById("skor").innerHTML='Skor ' + skor;
+	}
+	function GameOver(){
+	document.getElementById("panel").style.display="none";
+	document.getElementById("göster").style.display="inherit";
+	document.getElementById("göster").style.textAlign="center";
+	document.getElementById("tuttum").innerHTML='OLMADI TEKRAR DENE BU SEFER DAHA DİKKATLİ OLMALISIN..';
+	document.getElementById("level").innerHTML='';
+	document.getElementById("skor").innerHTML='';
+	document.getElementById("peki").innerHTML="GAME OVER...";		
+	document.getElementById("can").innerHTML="BİTTİ";
+	sure=0;
+	document.getElementById("sure").innerHTML="Süre " + sure;
+	level=1;
+	skor=0;			
+	}
+	function TekSure(){
+	if(can>0){
+	sure--;
+	document.getElementById("sure").innerHTML="Süre " + sure;
+	if (sure>0) {
+	window.setTimeout(TekSure, 1000);	
+	}
+	if(sure===0){
+		window.setTimeout(SureDoldu,1000);
+	}}
+	if(can===0){
+	window.setTimeout(GameOver,1000);
+	}
+	}
+	function SureDoldu(){
+	if(can>0){
+	can--;
+	skor-=10;
+	document.getElementById("skor").innerHTML='Skor '+skor;
+	document.getElementById("sure").innerHTML='Süren Doldu';
+	document.getElementById("can").innerHTML="Can " + can;
+	sure=30;
+	document.getElementById("sure").innerHTML="Süre " + sure;
+	}
+	if (sure>0) {
+	window.setTimeout(TekSure, 1000);	
+	}}	
+	document.getElementById("skor").innerHTML='Skor '+skor;
+	if(skor===0){
+document.getElementById("peki").innerHTML=" Hazırsan Başlıyoruz";
+document.getElementById("level").innerHTML='Level '+level;
+}
+if(can===0){
+	level=1;
+}
+if(level===1){
+    tuttum();
+    sallamasyon();
+}
+function deger(){
+var x=document.getElementById("deger").value;
+var tamisabet=0;
+var son = x-tuttum;
+if(skor>=0 && skor<=4){
+	level=1;
+	document.getElementById("level").innerHTML='Level '+level;
+}
+else if(skor>=5 && skor<=10){
+	level=2;
+	document.getElementById("level").innerHTML='Level '+level;
+}
+else if(skor>=11 && skor<=39){
+	level=3;
+	document.getElementById("level").innerHTML='Level '+level;
+}
+else if(skor>=40 && skor<=80){
+	level=4;
+	document.getElementById("level").innerHTML='Level '+level;
+}
+else if(skor>=81 && skor<=110){
+	level=5;
+	document.getElementById("level").innerHTML='Level '+level;
+}
+else if(skor>=111 && skor<=150){
+	level=6;
+	document.getElementById("level").innerHTML='Level '+level;
+}
+if(tamisabet===2){
+	document.getElementById("tuttum").innerHTML='Vay bee demek yine tam isabet :) '+tuttum;
+	}
+if(x==tuttum){
+	SureBasla();
+	document.getElementById("deger").value='';
+	tamisabet+=1;
+	son=0;
+	skor+=10;
+	document.getElementById("skor").innerHTML='skor '+skor;
+	document.getElementById("peki").innerHTML="Tam İsabet Bu Baya İyiydi .:)";
+if(level==1){
+	if(skor<1){
+	tuttum=16;
+	document.getElementById("tuttum").innerHTML='2.nin 8 katı kaçtır';
+}
+	if(skor>=1){
+	tuttum=20;
+	document.getElementById("tuttum").innerHTML='4.ün 5 katı kaçtır';
+}
+	if(skor>=2){
+	tuttum=25;
+	document.getElementById("tuttum").innerHTML='5.in 5 katı kaçtır';
+}
+	if(skor>=3){
+	tuttum=40;
+	document.getElementById("tuttum").innerHTML='5.in 8 katı kaçtır';
+}
+	if(skor>=4){
+	tuttum=36;
+	document.getElementById("tuttum").innerHTML='6.in 6 katı kaçtır';
+}
+}
+	else if(level==2){
+	if(skor>=5){
+	tuttum=49;
+	document.getElementById("tuttum").innerHTML='7nin kendi ile çarpımı kaçtır';
+}
+	if(skor>=6){
+	tuttum=6;
+	document.getElementById("tuttum").innerHTML='36nın kare kökü kaçtır';
+}
+	if(skor>=7){
+	tuttum=192;
+	document.getElementById("tuttum").innerHTML='64 ün 3 katı kaçtır';
+}
+	if(skor>=8){
+	tuttum=34;
+	document.getElementById("tuttum").innerHTML='basamaklarının toplamı 12 eden en küçük sayı kaçtır';
+}
+	if(skor>=9){
+	tuttum=2;
+	document.getElementById("tuttum").innerHTML='kendiyle bölünüp 2ile çarpıldığında 2 eden sayı kaçtır';
+}
+	if(skor>=10){
+	tuttum=88;
+	document.getElementById("tuttum").innerHTML='22 yi 3 ile çarpıp kendisiyle toplarsak çıkan sayı kaçtır';
+}
+}
+	else if(level==3){
+	if(skor>=11 && skor<=18){
+	tuttum=7;
+	document.getElementById("tuttum").innerHTML='49 un kare kökü kaçtır';
+}
+	if(skor>=19 && skor<=25){
+	tuttum=11;
+	document.getElementById("tuttum").innerHTML='22 yi 2 ye bölünüp 3 ile çarparsak ve kendisinden çıkartırsak çıkan sayı kaçtır';
+}
+	if(skor>=26 && skor<=30){
+	tuttum=2;
+	document.getElementById("tuttum").innerHTML='62 den tavşan hayal edelim sonra tavşanı bırakıp 62 ye odaklanalım 2 ile çarpıp kendisine bölersek  çıkan sayı kaçtır';
+}
+	if(skor>=31 && skor<=39){
+	tuttum=7;
+	document.getElementById("tuttum").innerHTML='7 nin kendisiyle çarpılmasından çıkan sayının kare kökü kaçtır';
+}
+}
+	else if(level==4){
+	if(skor>=40 && skor<=50){
+	tuttum=30;
+	document.getElementById("tuttum").innerHTML='120 nin basamaklarının toplamına bölündüğünde çıkan sayı kaçtır';
+}
+	if(skor>=51 && skor<=60){
+	tuttum=2;
+	document.getElementById("tuttum").innerHTML='72 den tavşan hayal edelim sonra tavşanı bırakıp 72 ye odaklanalım 2 ile çarpıp kendisine bölelim çıkan sayı kaçtır';
+}
+	if(skor>=61 && skor<=70){
+	tuttum=8;
+	document.getElementById("tuttum").innerHTML='64 ün kare kökü kaçtır';
+}
+	if(skor>=71 && skor<=80){
+	tuttum=12;
+	document.getElementById("tuttum").innerHTML='18 i 2 ile çarpıp 3 e bölelim çıkan sayı kaçtır';
+}
+}
+	else if(level==5){
+	if(skor>=81 && skor<=90){
+	tuttum=3;
+	document.getElementById("tuttum").innerHTML='22 yi 3 ile çarpıp kendisine bölersek çıkan sayı kaçtır';
+}
+	if(skor>=91 && skor<=100){
+	tuttum=4;
+	document.getElementById("tuttum").innerHTML='16 nın kare kökü kaçtır';
+}
+	if(skor>=101 && skor<=110){
+	tuttum=22;
+	document.getElementById("tuttum").innerHTML='22 üze 2 yi 22 ye bölersek çıkan sayı kaçtır';
+}
+}
+	else if(level==6){
+	if(skor>=111 && skor<=120){
+	tuttum=4;
+	document.getElementById("tuttum").innerHTML='36 nın kare kökünü alalım 2 ile çarpalım çıkan sayıya 4 ekleyelim çıkan sayının kare kökü kaçtır';
+}
+	if(skor>=121 && skor<=130){
+	tuttum=3;
+	document.getElementById("tuttum").innerHTML=' 27 yi basamaklarının toplamına bölersek çıkan sayı kaçtır';
+}
+	if(skor>=131 && skor<=140){
+	tuttum=11;
+	document.getElementById("tuttum").innerHTML=' 22 nin 3 katını 36 nın kare köküne bölersek çıkan sayı kaçtır';
+}
+	if(skor>=141 && skor<=150){
+			document.getElementById("peki").innerHTML="Bu Son Soru Doğru Cevaplarsan Oyun'u Kazanacaksın:)";
+	tuttum=4;
+	document.getElementById("tuttum").innerHTML='120 yi basamaklarının toplamıyla çarpıp kendisine bölersek çıkan sayı kaçtır';
+}
+	if(skor>150){
+		window.setTimeout(Kazandın,1000);
+
+}
+}
+}
+else if(x==''){
+	document.getElementById("peki").innerHTML="Sayı Girmediniz..";	
+	}
+else {
+	if(can>0){
+	SureBasla();
+	can--;
+	skor-=7;
+	document.getElementById("skor").innerHTML='Skor '+skor;
+	document.getElementById("can").innerHTML="Can "+can;
+	document.getElementById("deger").value='';
+	document.getElementById("peki").innerHTML="Ooo Malesef OLMADI. :(";
+if(level==1){
+	if(skor<1){
+	tuttum=16;
+	document.getElementById("tuttum").innerHTML='2.nin 8 katı kaçtır';
+}
+	if(skor>=1){
+	tuttum=20;
+	document.getElementById("tuttum").innerHTML='4.ün 5 katı kaçtır';
+}
+	if(skor>=2){
+	tuttum=25;
+	document.getElementById("tuttum").innerHTML='5.in 5 katı kaçtır';
+}
+	if(skor>=3){
+	tuttum=40;
+	document.getElementById("tuttum").innerHTML='5.in 8 katı kaçtır';
+}
+	if(skor>=4){
+	tuttum=36;
+	document.getElementById("tuttum").innerHTML='6.in 6 katı kaçtır';
+}
+}
+	else if(level==2){
+	if(skor>=5){
+	tuttum=49;
+	document.getElementById("tuttum").innerHTML='7nin kendi ile çarpımı kaçtır';
+}
+	if(skor>=6){
+	tuttum=6;
+	document.getElementById("tuttum").innerHTML='36nın kare kökü kaçtır';
+}
+	if(skor>=7){
+	tuttum=192;
+	document.getElementById("tuttum").innerHTML='64 ün 3 katı kaçtır';
+}
+	if(skor>=8){
+	tuttum=34;
+	document.getElementById("tuttum").innerHTML='basamaklarının toplamı 12 eden en küçük sayı kaçtır';
+}
+	if(skor>=9){
+	tuttum=2;
+	document.getElementById("tuttum").innerHTML='kendiyle bölünüp 2ile çarpıldığında 2 eden sayı kaçtır';
+}
+	if(skor>=10){
+	tuttum=88;
+	document.getElementById("tuttum").innerHTML='22 yi 3 ile çarpıp kendisiyle toplarsak çıkan sayı kaçtır';
+}
+}
+	else if(level==3){
+	if(skor>=11 && skor<=18){
+	tuttum=7;
+	document.getElementById("tuttum").innerHTML='49 un kare kökü kaçtır';
+}
+	if(skor>=19 && skor<=25){
+	tuttum=11;
+	document.getElementById("tuttum").innerHTML='22 yi 2 ye bölünüp 3 ile çarparsak ve kendisinden çıkartırsak çıkan sayı kaçtır';
+}
+	if(skor>=26 && skor<=30){
+	tuttum=2;
+	document.getElementById("tuttum").innerHTML='62 den tavşan hayal edelim sonra tavşanı bırakıp 62 ye odaklanalım 2 ile çarpıp kendisine bölersek  çıkan sayı kaçtır';
+}
+	if(skor>=31 && skor<=39){
+	tuttum=7;
+	document.getElementById("tuttum").innerHTML='7 nin kendisiyle çarpılmasından çıkan sayının kare kökü kaçtır';
+}
+}
+	else if(level==4){
+	if(skor>=40 && skor<=50){
+	tuttum=40;
+	document.getElementById("tuttum").innerHTML='120 nin basamaklarının toplamına bölündüğünde çıkan sayı kaçtır';
+}
+	if(skor>=51 && skor<=60){
+	tuttum=2;
+	document.getElementById("tuttum").innerHTML='72 den tavşan hayal edelim sonra tavşanı bırakıp 72 ye odaklanalım 2 ile çarpıp kendisine bölelim çıkan sayı kaçtır';
+}
+	if(skor>=61 && skor<=70){
+	tuttum=8;
+	document.getElementById("tuttum").innerHTML='64 ün kare kökü kaçtır';
+}
+	if(skor>=71 && skor<=80){
+	tuttum=12;
+	document.getElementById("tuttum").innerHTML='18 i 2 ile çarpıp 3 e bölelim çıkan sayı kaçtır';
+}
+}
+	else if(level==5){
+	if(skor>=81 && skor<=90){
+	tuttum=3;
+	document.getElementById("tuttum").innerHTML='22 yi 3 ile çarpıp kendisine bölersek çıkan sayı kaçtır';
+}
+	if(skor>=91 && skor<=100){
+	tuttum=4;
+	document.getElementById("tuttum").innerHTML='16 nın kare kökü kaçtır';
+}
+	if(skor>=101 && skor<=110){
+	tuttum=22;
+	document.getElementById("tuttum").innerHTML='22 üze 2 yi 22 ye bölersek çıkan sayı kaçtır';
+}
+}
+	else if(level==6){
+	if(skor>=111 && skor<=120){
+	tuttum=4;
+	document.getElementById("tuttum").innerHTML='36 nın kare kökünü alalım 2 ile çarpalım çıkan sayıya 4 ekleyelim çıkan sayının kare kökü kaçtır';
+}
+	if(skor>=121 && skor<=130){
+	tuttum=3;
+	document.getElementById("tuttum").innerHTML=' 27 yi basamaklarının toplamına bölersek çıkan sayı kaçtır';
+}
+	if(skor>=131 && skor<=140){
+	tuttum=11;
+	document.getElementById("tuttum").innerHTML=' 22 nin 3 katını 36 nın kare köküne bölersek çıkan sayı kaçtır';
+}
+	if(skor>=141 && skor<=150){
+	document.getElementById("peki").innerHTML="Bu Son Soru Doğru Cevaplarsan Oyun'u Kazanacaksın:)";
+	tuttum=4;
+	document.getElementById("tuttum").innerHTML='120 yi basamaklarının toplamıyla çarpıp kendisine bölersek çıkan sayı kaçtır';
+}
+	if(skor>150){
+		window.setTimeout(Kazandın,1000);
+
+}
+}
+}
+	if (can===0){
+		window.setTimeout(GameOver,1000);
+	}
+}
+}
+</script>
+
+</body>
+</html>
